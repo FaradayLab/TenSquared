@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>10 by 10 Game</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <title>10 Squared</title>
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css" type="text/css" />
+  </head>
+
+  <body class="" onload="onLoad()">
+    <header id="header">
+      <img src="img/logo.png" alt="" id="logo">
+    </header>
+    <nav class="" id="menu-wrap">
+      <div id="game-over">
+          <h1>Game Over</h1>
+          <h4 id="message">No Moves Left</h4>
+          <h4 class="score" id="game-over-score"></h4>
+          <p id="high-score">New High Score!</p>
+          <!-- <button class="btn reset" id="reset">New Game</button> -->
+      </div>
+      <div class="menu">
+        <div class="menu-item">
+          <div class="item" id="restart"></div>
+        </div>
+        <div class="menu-item">
+          <div class="item" id="sound"></div>
+        </div>
+        <div class="menu-item">
+          <div class="item" id="color-mode"></div>
+        </div>
+        <div class="menu-item">
+          <div class="item" id="ad"></div>
+        </div>
+    
+        <div class="modal" id="restart-modal">
+          <p>Are You Sure?</p>
+          <button class="btn reset" id="confirm-restart">Yes</button>
+          <button class="btn" id="cancel-restart">Cancel</button>
+        </div>
+        <div class="modal" id="color-modal">
+          <div class="options">
+            <span class="" id="night"></span>
+          </div>
+          <div class="options">
+            <span class="" id="colorBlind"></span>
+          </div>
+          <div class="color-choices">
+            <img src="img/original.png" alt="" class="color" id="original">
+            <img src="img/classic.png" alt="" class="color" id="classic">
+            <img src="img/dark.png" alt="" class="color" id="dark">
+            <img src="img/earth.png" alt="" class="color" id="earth">
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="game-info">
+        <h4 class="score" id="score-current">0</h4>
+        <h4 class="score" id="score-best">0</h4>
+        <div id="rotation">
+          <span class="rotate"></span><!--
+          --><span class="rotate"></span><!--
+          --><span class="rotate"></span>
+        </div>
+        <button class="btn" id="menu-btn"></button>
+      </div>
+    <div id="boardContainer">
+      <div id="board" data-side="up">
+        <div class="cell" data-number="0">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="1">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="2">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="3">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="4">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="5">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="6">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="7">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="8">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="9">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="10">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="11">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="12">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="13">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="14">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="15">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="16">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="17">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="18">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="19">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="20">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="21">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="22">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="23">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="24">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="25">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="26">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="27">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="28">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="29">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="30">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="31">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="32">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="33">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="34">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="35">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="36">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="37">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="38">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="39">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="40">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="41">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="42">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="43">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="44">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="45">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="46">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="47">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="48">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="49">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="50">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="51">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="52">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="53">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="54">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="55">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="56">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="57">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="58">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="59">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="60">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="61">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="62">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="63">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="64">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="65">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="66">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="67">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="68">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="69">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="70">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="71">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="72">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="73">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="74">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="75">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="76">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="77">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="78">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="79">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="80">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="81">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="82">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="83">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="84">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="85">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="86">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="87">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="88">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="89">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="90">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="91">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="92">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="93">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="94">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="95">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="96">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="97">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="98">
+          <div class="fill"></div>
+        </div>
+        <div class="cell" data-number="99">
+          <div class="fill"></div>
+        </div>
+      </div>
+    </div>
+    <div id="drawerContainer">
+      <div id="drawer">
+      </div>
+    </div>
+    <p id="device-log"></p>
+    <!-- <button id="clearStorage">Clear Storage</button> -->
+    <audio src="sounds/woosh.wav" id="audio"></audio>
+
+    <!-- <script src="cordova.js"></script> -->
+    <script src="script.js"></script>
+    
+  </body>
+</html>
