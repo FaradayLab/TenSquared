@@ -1,4 +1,3 @@
-// HOURS WORKED 76 hrs
 (function (window){
 const store         = window.localStorage;
 const audioElement  = document.querySelector('#audio');
