@@ -515,8 +515,8 @@ function isTen() {
 
     if(linesOfTen.length){
         const power = getStored('power') || 0;
-        // UPDATE POWERUPS AND DONT ADD MORE IF FULL ALREADY, ONLY ADD POWERUP IF 4 OR MORE LINES CLEARED
-        if(power < 3 && linesOfTen.length >= 4){
+        // UPDATE POWERUPS AND DONT ADD MORE IF FULL ALREADY
+        if(power < 3 && linesOfTen.length >= 1){
             rotateDots[power].classList.add('show');
             setStored('power', power + 1);
         }
