@@ -33,7 +33,7 @@ function initGame(){
     // ATTACHES ROTATE POSITONS OBJECT TO BOARD FILLS ON DOM
     boardFills.forEach((fill, i) => {fill.rotateFills = rotateFills[i];});
 
-    window.addEventListener('resize', e => {debounce(resizeFunc);});
+    window.addEventListener('resize', resizeFunc);
 
     menuBtn.addEventListener('click', e => {menuWrap.classList.add('show'); playSound('back');});
     menuWrap.addEventListener('click', menuFunctions);
