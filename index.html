@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css" type="text/css" />
   </head>
 
-  <body class="" onload="onLoad()">
+  <body>
     <header id="header">
       <img src="img/logo.png" alt="" id="logo">
     </header>
@@ -19,7 +19,7 @@
           <h4 id="message">No Moves Left</h4>
           <h4 class="score" id="game-over-score"></h4>
           <p id="high-score">New High Score!</p>
-          <!-- <button class="btn reset" id="reset">New Game</button> -->
+          <button class="btn reset" id="reset">New Game</button>
       </div>
       <div class="menu">
         <div class="menu-item">
@@ -66,7 +66,7 @@
         </div>
         <button class="btn" id="menu-btn"></button>
       </div>
-    <div id="boardContainer">
+    <div id="board-container">
       <div id="board" data-side="up">
         <div class="cell" data-number="0">
           <div class="fill"></div>
@@ -370,15 +370,12 @@
         </div>
       </div>
     </div>
-    <div id="drawerContainer">
+    <div id="drawer-container">
       <div id="drawer">
       </div>
     </div>
-    <p id="device-log"></p>
-    <!-- <button id="clearStorage">Clear Storage</button> -->
     <audio src="sounds/woosh.mp3" id="audio"></audio>
 
-    <!-- <script src="cordova.js"></script> -->
     <script src="script.js"></script>
     
   </body>
