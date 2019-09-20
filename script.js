@@ -26,12 +26,6 @@ let activeRotate    = false;
 let click_degrees;
 let degrees;
 
-// TESTING
-document.querySelector('#logo').addEventListener('click', gameOver);
-document.querySelector('#clearStorage').addEventListener('click', ()=>{store.clear();});
-// storeFillData();
-
-
 function initGame(){
     // LOAD GAME AUDIO
     audioElement.load();
