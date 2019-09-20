@@ -751,7 +751,7 @@ function scaleFills(notMouseup){
 function playSound(name){
     if(getStored('mute')) return;
 
-    audioElement.src = `sounds/${name}.wav`;
+    audioElement.src = `sounds/${name}.mp3`;
 
     audioElement.play();
 }
