@@ -203,7 +203,7 @@ header #logo {
   border-radius: 5px;
 }
 
-#device-log {
+#deviceLog {
   position: absolute;
   bottom: 20px;
 }
@@ -396,8 +396,8 @@ body.mute #menu-wrap .menu .menu-item .item#sound {
   text-align: center;
   width: 68px;
   margin: auto;
-  -webkit-user-select: text;
-  user-select: text;
+  /* -webkit-user-select: text; */
+  /* user-select: text; */
 }
 .game-info #rotation .rotate {
   display: inline-block;
@@ -498,6 +498,13 @@ body.mute #menu-wrap .menu .menu-item .item#sound {
   opacity: 1;
 }
 /* AFTER SCALING FILLS WHEN A LINE OF TEN IS CREATED THIS MIMICS THE LOOK OF EMPTY CELLS */
+#board .cell {
+  user-select: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
 #board .cell::before {
   content: '';
   width: 30px;
