@@ -1,18 +1,18 @@
+// HOURS WORKED 79 hrs
 (function (window){
 const store         = window.localStorage;
-const audioElement  = document.querySelector('#audio');
 const body          = document.querySelector('body');
 const menuBtn       = document.querySelector('#menu-btn');
 const menuWrap      = document.querySelector('#menu-wrap');
 const colorMenu     = document.querySelector('#color-modal');
 const restartMenu   = document.querySelector('#restart-modal');
-const rotateDots    = document.querySelectorAll('.rotate');
 const score         = document.querySelector('#score-current');
 const bestScore     = document.querySelector('#score-best');
 const drawer        = document.querySelector('#drawer');
 const board         = document.querySelector('#board');
-const boardFills    = [...document.querySelectorAll('#board .fill')];
 const cellWidth     = document.querySelector('#board .cell').clientWidth;
+const rotateDots    = document.querySelectorAll('.rotate');
+const boardFills    = [...document.querySelectorAll('#board .fill')];
 const halfCell      = cellWidth / 2;
 let shape           = null;
 let activeDrag      = false;
@@ -27,7 +27,20 @@ let degrees;
 
 function initGame(){
     // LOAD GAME AUDIO
-    audioElement.load();
+    ion.sound({
+        sounds: [
+            {name:'back', multiplay:true},
+            {name:'click', multiplay:true},
+            {name:'placed', multiplay:true},
+            {name:'drop', multiplay:true},
+            {name:'woosh'},
+            {name:'c0-9'}
+        ],
+        volume: 1,
+        path: 'sounds/',
+        preload: true,
+        multiplay: false
+    });
     // THE CELLS THAT WHEN THE BOARD IS ROTATED THE CELLS NOW LINE UP WITH
     const rotateFills = [{up: 0, down: 99, right: 9, left: 90},{up: 1, down: 98, right: 19, left: 80},{up: 2, down: 97, right: 29, left: 70},{up: 3, down: 96, right: 39, left: 60},{up: 4, down: 95, right: 49, left: 50},{up: 5, down: 94, right: 59, left: 40},{up: 6, down: 93, right: 69, left: 30},{up: 7, down: 92, right: 79, left: 20},{up: 8, down: 91, right: 89, left: 10},{up: 9, down: 90, right: 99, left: 0},{up: 10, down: 89, right: 8, left: 91},{up: 11, down: 88, right: 18, left: 81},{up: 12, down: 87, right: 28, left: 71},{up: 13, down: 86, right: 38, left: 61},{up: 14, down: 85, right: 48, left: 51},{up: 15, down: 84, right: 58, left: 41},{up: 16, down: 83, right: 68, left: 31},{up: 17, down: 82, right: 78, left: 21},{up: 18, down: 81, right: 88, left: 11},{up: 19, down: 80, right: 98, left: 1},{up: 20, down: 79, right: 7, left: 92},{up: 21, down: 78, right: 17, left: 82},{up: 22, down: 77, right: 27, left: 72},{up: 23, down: 76, right: 37, left: 62},{up: 24, down: 75, right: 47, left: 52},{up: 25, down: 74, right: 57, left: 42},{up: 26, down: 73, right: 67, left: 32},{up: 27, down: 72, right: 77, left: 22},{up: 28, down: 71, right: 87, left: 12},{up: 29, down: 70, right: 97, left: 2},{up: 30, down: 69, right: 6, left: 93},{up: 31, down: 68, right: 16, left: 83},{up: 32, down: 67, right: 26, left: 73},{up: 33, down: 66, right: 36, left: 63},{up: 34, down: 65, right: 46, left: 53},{up: 35, down: 64, right: 56, left: 43},{up: 36, down: 63, right: 66, left: 33},{up: 37, down: 62, right: 76, left: 23},{up: 38, down: 61, right: 86, left: 13},{up: 39, down: 60, right: 96, left: 3},{up: 40, down: 59, right: 5, left: 94},{up: 41, down: 58, right: 15, left: 84},{up: 42, down: 57, right: 25, left: 74},{up: 43, down: 56, right: 35, left: 64},{up: 44, down: 55, right: 45, left: 54},{up: 45, down: 54, right: 55, left: 44},{up: 46, down: 53, right: 65, left: 34},{up: 47, down: 52, right: 75, left: 24},{up: 48, down: 51, right: 85, left: 14},{up: 49, down: 50, right: 95, left: 4},{up: 50, down: 49, right: 4, left: 95},{up: 51, down: 48, right: 14, left: 85},{up: 52, down: 47, right: 24, left: 75},{up: 53, down: 46, right: 34, left: 65},{up: 54, down: 45, right: 44, left: 55},{up: 55, down: 44, right: 54, left: 45},{up: 56, down: 43, right: 64, left: 35},{up: 57, down: 42, right: 74, left: 25},{up: 58, down: 41, right: 84, left: 15},{up: 59, down: 40, right: 94, left: 5},{up: 60, down: 39, right: 3, left: 96},{up: 61, down: 38, right: 13, left: 86},{up: 62, down: 37, right: 23, left: 76},{up: 63, down: 36, right: 33, left: 66},{up: 64, down: 35, right: 43, left: 56},{up: 65, down: 34, right: 53, left: 46},{up: 66, down: 33, right: 63, left: 36},{up: 67, down: 32, right: 73, left: 26},{up: 68, down: 31, right: 83, left: 16},{up: 69, down: 30, right: 93, left: 6},{up: 70, down: 29, right: 2, left: 97},{up: 71, down: 28, right: 12, left: 87},{up: 72, down: 27, right: 22, left: 77},{up: 73, down: 26, right: 32, left: 67},{up: 74, down: 25, right: 42, left: 57},{up: 75, down: 24, right: 52, left: 47},{up: 76, down: 23, right: 62, left: 37},{up: 77, down: 22, right: 72, left: 27},{up: 78, down: 21, right: 82, left: 17},{up: 79, down: 20, right: 92, left: 7},{up: 80, down: 19, right: 1, left: 98},{up: 81, down: 18, right: 11, left: 88},{up: 82, down: 17, right: 21, left: 78},{up: 83, down: 16, right: 31, left: 68},{up: 84, down: 15, right: 41, left: 58},{up: 85, down: 14, right: 51, left: 48},{up: 86, down: 13, right: 61, left: 38},{up: 87, down: 12, right: 71, left: 28},{up: 88, down: 11, right: 81, left: 18},{up: 89, down: 10, right: 91, left: 8},{up: 90, down: 9, right: 0, left: 99},{up: 91, down: 8, right: 10, left: 89},{up: 92, down: 7, right: 20, left: 79},{up: 93, down: 6, right: 30, left: 69},{up: 94, down: 5, right: 40, left: 59},{up: 95, down: 4, right: 50, left: 49},{up: 96, down: 3, right: 60, left: 39},{up: 97, down: 2, right: 70, left: 29},{up: 98, down: 1, right: 80, left: 19},{up: 99, down: 0, right: 90, left: 9}];
     // ATTACHES ROTATE POSITONS OBJECT TO BOARD FILLS ON DOM
@@ -515,8 +528,8 @@ function isTen() {
 
     if(linesOfTen.length){
         const power = getStored('power') || 0;
-        // UPDATE POWERUPS AND DONT ADD MORE IF FULL ALREADY
-        if(power < 3 && linesOfTen.length >= 1){
+        // UPDATE POWERUPS AND DONT ADD MORE IF FULL ALREADY, ONLY ADD POWERUP IF 4 OR MORE LINES CLEARED
+        if(power < 3 && linesOfTen.length >= 4){
             rotateDots[power].classList.add('show');
             setStored('power', power + 1);
         }
@@ -629,9 +642,7 @@ function scaleFills(notMouseup){
 function playSound(name){
     if(getStored('mute')) return;
 
-    audioElement.src = `sounds/${name}.mp3`;
-
-    audioElement.play();
+    ion.sound.play(name);
 }
 
 function newScore(num){
@@ -654,7 +665,6 @@ function newScore(num){
         if(!(--num)){
             clearInterval(inter);
         }
-        
     }
 }
 function resizeFunc(){
@@ -706,9 +716,7 @@ function menuFunctions(e){
         body.classList.remove('classic','dark','earth');
         body.classList.add(id);
         setStored('colors', id);
-
     }
-
     playSound('back');
 }
 
@@ -725,9 +733,6 @@ function randomize(min,max){
     const mx = max || min;
     return Math.floor(Math.random() * (mx - mn) + mn);
 }
-// function toNumber(a,b){
-//     return +(a + '' + b);
-// }
 
 function debounce(func, wait = 20, immediate = true) {
     let timeout;
